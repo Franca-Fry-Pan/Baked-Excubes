@@ -4,6 +4,8 @@ An Autohotkey Application to convert Excubes into Grinders, and sell grinders on
 
 > Uses **Version 2** of [AutoHotkey](https://www.autohotkey.com/) script.
 
+**Note:** Currently, requires you to have a material storage active!
+
 ## How to Run
 
 1. **Install** [AutoHotkey V2](https://www.autohotkey.com/).
