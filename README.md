@@ -12,7 +12,7 @@ An Autohotkey Application to convert Excubes into Grinders, and sell grinders on
 
 3. **Position** yourself in front of Nysa _(Excube Exchanger)_ as shown in image below:
 
-![image-ref](https://github.com/Franca-Frying-Pan/Baked-Excubes/assets/144707070/ad4054bf-6375-4e63-964e-64c3dce348be)
+![image](https://github.com/Franca-Fry-Pan/Baked-Excubes/assets/144707070/06bb5848-c546-433d-9523-816fcc35a819)
 
 > Just make sure your selection is hovering over her
 
