@@ -67,22 +67,41 @@ class GrindersBuyer {
             ; Find the shop menu button on the screen...
             FoundX := 0
             FoundY := 0
-            if (not ImageSearch(&FoundX, &FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*185 assets\buying\shop-menu-state.png")) {
-                breakMsg := BreakMessage(SHOP_BUTTON_STATUS, "'Excube Exchange Shop' button not found!")
-                return breakMsg
+            AttemptNumber := 0
+            while (not ImageSearch(&FoundX, &FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*185 assets\buying\shop-menu-state.png")) {
+                this._ShortRandomSleep()
+
+                ; Failed to find the shop menu button in more than 3 attempts...
+                if (AttemptNumber > 3) {
+                    breakMsg := BreakMessage(SHOP_BUTTON_STATUS, "'Excube Exchange Shop' button not found!")
+                    return breakMsg
+                }
+                AttemptNumber++
             }
+
             ; Enter excube exchange shop menu...
             ControlSend("{ENTER}", this.targetWindow)
+            ; TODO: Replace with image reconigiton to be 'ready to set to 33' state,'
+            ; Rather than rely on a random sleep....
+            this._LongRandomSleep()
             this._LongRandomSleep()
 
             ; Set to maximum possible grinders to purchase
             ControlSend("{Left}", this.targetWindow)
             Sleep(1500)
-            if (not ImageSearch(&FoundX, &FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*135 assets\buying\buy-state.png")) {
-                ; Most likely either due to grinders being too full in material storage,
-                ; or not enough excubes...
-                breakMsg := BreakMessage(GRINDERS_PURCHASE_STATUS, "Unable to use 33 excubes to buy grinders. Material Storage is likely to have full grinders capacity!")
-                return breakMsg
+
+            AttemptNumber := 0
+            while (not ImageSearch(&FoundX, &FoundY, 0, 0, A_ScreenWidth, A_ScreenHeight, "*135 assets\buying\buy-state.png")) {
+                this._ShortRandomSleep()
+
+                if (AttemptNumber > 3) {
+                    ; Most likely either due to grinders being too full in material storage,
+                    ; or not enough excubes...
+                    breakMsg := BreakMessage(GRINDERS_PURCHASE_STATUS, "Unable to use 33 excubes to buy grinders. Material Storage is likely to have full grinders capacity!")
+                    return breakMsg
+                }
+
+                AttemptNumber++
             }
 
             this._ConfirmGrinderPurchase()
